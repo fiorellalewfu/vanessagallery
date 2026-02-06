@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Marcelle Ferron — Galerie vitrail + timeline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Outfit:wght@400..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body class="theme">
+  <div class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+
+    <header class="top glass hero-title">
+      <h1>Marcelle Ferron — Mur de lumière</h1>
+      <p class="subtitle">
+        Clique une période, puis un fragment. Le guide commente l’œuvre avec le contexte (Automatistes → vitrail → art public).
+      </p>
+    </header>
+
+    <!-- Timeline -->
+    <nav class="timeline glass" aria-label="Ligne de temps">
+      <button class="station active" data-periode="toutes" aria-pressed="true">
+        <span class="dot"></span>
+        <span class="label">Toutes</span>
+      </button>
+
+      <div class="rail" aria-hidden="true"></div>
+
+      <button class="station" data-periode="1940s" aria-pressed="false">
+        <span class="dot"></span>
+        <span class="label">1940s · Débuts</span>
+      </button>
+
+      <button class="station" data-periode="1950s" aria-pressed="false">
+        <span class="dot"></span>
+        <span class="label">1950s · Automatistes</span>
+      </button>
+
+      <button class="station" data-periode="1960s" aria-pressed="false">
+        <span class="dot"></span>
+        <span class="label">1960s · Paris & transition</span>
+      </button>
+
+      <button class="station" data-periode="1970s-80s" aria-pressed="false">
+        <span class="dot"></span>
+        <span class="label">1970–80s · Maturité</span>
+      </button>
+    </nav>
+
+    <!-- Carte de contexte (narration de la timeline) -->
+    <section class="period-card glass" aria-label="Contexte de la période">
+      <h2 class="period-title" id="periodTitle">Toutes les périodes</h2>
+      <p class="period-text" id="periodText">
+        Parcours global : des débuts abstraits (années 1940) au geste automatiste (années 1950), puis aux recherches et structures (années 1960) et à la maturité (années 1970–80).
+      </p>
+    </section>
+
+    <main class="wrap">
+      <!-- Galerie vitrail -->
+      <section class="vitrail glass" aria-label="Galerie vitrail">
+        <div class="mosaic" id="mosaic">
+          <div class="spot" aria-hidden="true"></div>
+          <div class="mosaic-hero hero-overlay" aria-hidden="true">
+            <p class="eyebrow">galerie immersive</p>
+            <h2>Choisis un fragment pour explorer l'œuvre lumineuse de Marcelle Ferron</h2>
+            <p class="hero-copy">
+              Chaque morceau de lumière est une porte vers une œuvre : clique et laisse le guide raconter les gestes, la
+              couleur et le contexte Automatistes → vitrail → art public.
+            </p>
+            <p class="hero-hint">Survole un fragment, puis clique pour révéler l’histoire.</p>
+          </div>
+          <div class="mosaic-pieces" id="mosaicPieces" aria-live="polite"></div>
+        </div>
+
+        <div class="legend">
+          <span class="pill" id="legendPeriod">Période : Toutes</span>
+          <span class="pill" id="legendCount">Œuvres : …</span>
+        </div>
+
+        <div class="pager" aria-label="Pagination des œuvres">
+          <button class="pager-btn" id="prevPage" type="button" disabled>◀ Précédent</button>
+          <span class="pager-info" id="pageInfo">Page 1</span>
+          <button class="pager-btn" id="nextPage" type="button" disabled>Suivant ▶</button>
+        </div>
+      </section>
+
+      <!-- Panneau chatbot -->
+      <aside class="panel glass" aria-label="Panneau guide">
+        <div class="panel-head">
+          <div class="badge" id="status">Sélectionne un fragment</div>
+          <div class="badge subtle">Guide Ferron</div>
+        </div>
+
+        <div class="panel-body">
+        <h2 class="art-title" id="artTitle">…</h2>
+        <p class="art-meta" id="artMeta">Clique sur une œuvre pour commencer.</p>
+
+        <div class="section" id="sectionDesc" hidden>
+          <div class="section-title">Description</div>
+          <div class="desc" id="artDesc"></div>
+        </div>
+
+          <div class="section" id="sectionLinks" hidden>
+            <div class="art-links" id="artLinks">
+              <a class="link-btn" id="sourceBtn" href="#" target="_blank" rel="noopener noreferrer">Voir la fiche du musée</a>
+            </div>
+          </div>
+
+          <div class="section" id="sectionThumb" hidden>
+            <div class="art-media" id="artMedia" aria-label="Vignette vitrail"></div>
+          </div>
+
+          <div class="section">
+            <div class="bot" id="botText">Le commentaire apparaîtra ici.</div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn" data-action="intro">Intro</button>
+          <button class="btn" data-action="lumiere">Lumière</button>
+          <button class="btn" data-action="couleur">Couleur</button>
+          <button class="btn" data-action="contexte">Contexte</button>
+          <button class="btn" data-action="similaire">Œuvre similaire</button>
+          <button class="btn" data-action="droits">Droits</button>
+        </div>
+
+        <div class="small-note">
+          <strong>Note :</strong> ce prototype n’utilise pas d’IA externe. Le JavaScript génère des réponses guidées.
+          Plus tard, tu pourras brancher une API IA (ou un endpoint) sur la même interface.
+          <br /><br />
+          <strong>Droits :</strong> les œuvres de Marcelle Ferron ne sont pas dans le domaine public (Canada) avant le 1er janvier 2072. Ici, on affiche des vignettes générées (dégradés) et on renvoie vers les fiches officielles via le bouton « Voir la fiche du musée ».
+          <br />
+          <strong>Fond d’ambiance :</strong> fichier `images/hero.jpg` (à remplacer par une illustration libre de ton choix).
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
